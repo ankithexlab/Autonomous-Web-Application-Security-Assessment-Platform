@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+
+# Build artifacts
+dist/
+*.tsbuildinfo
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Databases & local storage
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+backend/backups/
+backups/
+
+# Python bytecode & caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

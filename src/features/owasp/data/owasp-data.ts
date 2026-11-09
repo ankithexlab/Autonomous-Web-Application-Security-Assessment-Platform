@@ -1,0 +1,273 @@
+import type {
+  OWASPCategoryMeta,
+  OWASPCoverage,
+  OWASPFinding,
+  OWASPRiskTrendPoint,
+  OWASPStats,
+} from "../types/owasp"
+
+/* ── OWASP Top 10 Category Definitions ── */
+export const OWASP_CATEGORIES: OWASPCategoryMeta[] = [
+  {
+    id: "A01:2021",
+    rank: 1,
+    name: "Broken Access Control",
+    shortName: "Access Control",
+    description: "Restrictions on what authenticated users can do are not properly enforced.",
+    color: "text-red-400",
+    bgColor: "bg-red-500/10",
+    borderColor: "border-red-500/30",
+  },
+  {
+    id: "A02:2021",
+    rank: 2,
+    name: "Cryptographic Failures",
+    shortName: "Crypto Failures",
+    description: "Failures related to cryptography which often leads to exposure of sensitive data.",
+    color: "text-orange-400",
+    bgColor: "bg-orange-500/10",
+    borderColor: "border-orange-500/30",
+  },
+  {
+    id: "A03:2021",
+    rank: 3,
+    name: "Injection",
+    shortName: "Injection",
+    description: "User-supplied data is not validated, filtered, or sanitized by the application.",
+    color: "text-amber-400",
+    bgColor: "bg-amber-500/10",
+    borderColor: "border-amber-500/30",
+  },
+  {
+    id: "A04:2021",
+    rank: 4,
+    name: "Insecure Design",
+    shortName: "Insecure Design",
+    description: "Missing or ineffective control design. Risk specific to flaws in design.",
+    color: "text-yellow-400",
+    bgColor: "bg-yellow-500/10",
+    borderColor: "border-yellow-500/30",
+  },
+  {
+    id: "A05:2021",
+    rank: 5,
+    name: "Security Misconfiguration",
+    shortName: "Misconfiguration",
+    description: "Missing appropriate security hardening across any part of the application stack.",
+    color: "text-lime-400",
+    bgColor: "bg-lime-500/10",
+    borderColor: "border-lime-500/30",
+  },
+  {
+    id: "A06:2021",
+    rank: 6,
+    name: "Vulnerable & Outdated Components",
+    shortName: "Outdated Components",
+    description: "Components with known vulnerabilities may undermine application defenses.",
+    color: "text-green-400",
+    bgColor: "bg-green-500/10",
+    borderColor: "border-green-500/30",
+  },
+  {
+    id: "A07:2021",
+    rank: 7,
+    name: "Identification & Auth Failures",
+    shortName: "Auth Failures",
+    description: "Incorrectly implemented authentication and session management functions.",
+    color: "text-teal-400",
+    bgColor: "bg-teal-500/10",
+    borderColor: "border-teal-500/30",
+  },
+  {
+    id: "A08:2021",
+    rank: 8,
+    name: "Software & Data Integrity Failures",
+    shortName: "Integrity Failures",
+    description: "Code and infrastructure that does not protect against integrity violations.",
+    color: "text-cyan-400",
+    bgColor: "bg-cyan-500/10",
+    borderColor: "border-cyan-500/30",
+  },
+  {
+    id: "A09:2021",
+    rank: 9,
+    name: "Security Logging & Monitoring Failures",
+    shortName: "Logging Failures",
+    description: "Insufficient logging and monitoring, enabling attackers to achieve their goals.",
+    color: "text-blue-400",
+    bgColor: "bg-blue-500/10",
+    borderColor: "border-blue-500/30",
+  },
+  {
+    id: "A10:2021",
+    rank: 10,
+    name: "Server-Side Request Forgery",
+    shortName: "SSRF",
+    description: "SSRF flaws occur when a web application fetches a remote resource without validating user-supplied URL.",
+    color: "text-violet-400",
+    bgColor: "bg-violet-500/10",
+    borderColor: "border-violet-500/30",
+  },
+]
+
+/* ── Coverage Data ── */
+export const OWASP_COVERAGE: OWASPCoverage[] = [
+  { categoryId: "A01:2021", status: "covered", findingsCount: 8, criticalCount: 2, highCount: 3, mediumCount: 2, lowCount: 1, coveragePercent: 95, lastScanned: "2 hours ago" },
+  { categoryId: "A02:2021", status: "covered", findingsCount: 5, criticalCount: 1, highCount: 2, mediumCount: 2, lowCount: 0, coveragePercent: 90, lastScanned: "2 hours ago" },
+  { categoryId: "A03:2021", status: "covered", findingsCount: 11, criticalCount: 3, highCount: 5, mediumCount: 3, lowCount: 0, coveragePercent: 98, lastScanned: "2 hours ago" },
+  { categoryId: "A04:2021", status: "partial", findingsCount: 4, criticalCount: 0, highCount: 2, mediumCount: 2, lowCount: 0, coveragePercent: 60, lastScanned: "1 day ago" },
+  { categoryId: "A05:2021", status: "covered", findingsCount: 7, criticalCount: 1, highCount: 2, mediumCount: 3, lowCount: 1, coveragePercent: 88, lastScanned: "2 hours ago" },
+  { categoryId: "A06:2021", status: "covered", findingsCount: 6, criticalCount: 0, highCount: 3, mediumCount: 2, lowCount: 1, coveragePercent: 82, lastScanned: "3 hours ago" },
+  { categoryId: "A07:2021", status: "covered", findingsCount: 9, criticalCount: 2, highCount: 4, mediumCount: 2, lowCount: 1, coveragePercent: 92, lastScanned: "2 hours ago" },
+  { categoryId: "A08:2021", status: "partial", findingsCount: 3, criticalCount: 0, highCount: 1, mediumCount: 2, lowCount: 0, coveragePercent: 55, lastScanned: "2 days ago" },
+  { categoryId: "A09:2021", status: "covered", findingsCount: 4, criticalCount: 0, highCount: 1, mediumCount: 2, lowCount: 1, coveragePercent: 78, lastScanned: "2 hours ago" },
+  { categoryId: "A10:2021", status: "uncovered", findingsCount: 0, criticalCount: 0, highCount: 0, mediumCount: 0, lowCount: 0, coveragePercent: 0, lastScanned: undefined },
+]
+
+/* ── Recent Critical Findings ── */
+export const OWASP_FINDINGS: OWASPFinding[] = [
+  {
+    id: "owf-001",
+    categoryId: "A03:2021",
+    title: "Blind SQL Injection — User Auth Bypass",
+    description: "Unparameterized query at POST /api/v2/users/search allows full database read access.",
+    severity: "critical",
+    cvssScore: 9.8,
+    affectedAsset: "api.acmecorp.com",
+    discoveredAt: "5 minutes ago",
+    status: "open",
+    remediation: "Use parameterized queries or prepared statements. Never concatenate user input into SQL strings.",
+  },
+  {
+    id: "owf-002",
+    categoryId: "A01:2021",
+    title: "BOLA — Unauthorized Order Resource Access",
+    description: "Object-level authorization missing on GET /api/v1/orders/{id}. Any user can read any order.",
+    severity: "critical",
+    cvssScore: 9.1,
+    affectedAsset: "app.acmecorp.com",
+    discoveredAt: "38 minutes ago",
+    status: "open",
+    remediation: "Validate that the authenticated user owns the resource before serving it.",
+  },
+  {
+    id: "owf-003",
+    categoryId: "A07:2021",
+    title: "Weak Session Token — Predictable PRNG",
+    description: "Session tokens generated with Math.random() are predictable and can be forged.",
+    severity: "critical",
+    cvssScore: 8.8,
+    affectedAsset: "app.acmecorp.com",
+    discoveredAt: "2 hours ago",
+    status: "open",
+    remediation: "Use cryptographically secure random number generators (e.g., crypto.randomBytes).",
+  },
+  {
+    id: "owf-004",
+    categoryId: "A02:2021",
+    title: "Sensitive Data Transmitted Over HTTP",
+    description: "Login credentials and PII fields transmitted without TLS on /api/v1/profile endpoint.",
+    severity: "high",
+    cvssScore: 8.2,
+    affectedAsset: "legacy.acmecorp.com",
+    discoveredAt: "4 hours ago",
+    status: "in_progress",
+    remediation: "Enforce HTTPS for all endpoints and set HSTS headers.",
+  },
+  {
+    id: "owf-005",
+    categoryId: "A05:2021",
+    title: "Missing Content-Security-Policy Header",
+    description: "No CSP header set across 6 customer-facing targets, enabling XSS vector escalation.",
+    severity: "high",
+    cvssScore: 7.5,
+    affectedAsset: "www.acmecorp.com",
+    discoveredAt: "6 hours ago",
+    status: "open",
+    remediation: "Add a strict Content-Security-Policy response header to all pages.",
+  },
+  {
+    id: "owf-006",
+    categoryId: "A06:2021",
+    title: "jQuery 2.x with Known XSS CVE",
+    description: "Legacy jQuery 2.1.4 detected with CVE-2019-11358 (prototype pollution) unpatched.",
+    severity: "high",
+    cvssScore: 7.3,
+    affectedAsset: "legacy.acmecorp.com",
+    discoveredAt: "1 day ago",
+    status: "in_progress",
+    remediation: "Upgrade jQuery to 3.7.1 or migrate to a modern framework.",
+  },
+]
+
+/* ── Most Affected Assets ── */
+export const MOST_AFFECTED_ASSETS = [
+  { asset: "api.acmecorp.com", findingsCount: 18, criticalCount: 4, riskScore: 88 },
+  { asset: "app.acmecorp.com", findingsCount: 14, criticalCount: 3, riskScore: 76 },
+  { asset: "legacy.acmecorp.com", findingsCount: 11, criticalCount: 2, riskScore: 68 },
+  { asset: "graphql.acmecorp.com", findingsCount: 8, criticalCount: 1, riskScore: 52 },
+  { asset: "staging.acmecorp.com", findingsCount: 6, criticalCount: 0, riskScore: 35 },
+]
+
+/* ── Risk Trend Data ── */
+export const OWASP_RISK_TREND: OWASPRiskTrendPoint[] = [
+  { date: "Jan", riskScore: 72, criticalFindings: 8, highFindings: 18 },
+  { date: "Feb", riskScore: 68, criticalFindings: 6, highFindings: 15 },
+  { date: "Mar", riskScore: 74, criticalFindings: 9, highFindings: 22 },
+  { date: "Apr", riskScore: 65, criticalFindings: 5, highFindings: 14 },
+  { date: "May", riskScore: 58, criticalFindings: 4, highFindings: 12 },
+  { date: "Jun", riskScore: 62, criticalFindings: 6, highFindings: 16 },
+  { date: "Jul", riskScore: 54, criticalFindings: 3, highFindings: 10 },
+]
+
+/* ── Scan Timeline Events ── */
+export const OWASP_SCAN_TIMELINE = [
+  { id: "evt-1", time: "5 min ago", event: "Critical SQLi found", category: "A03:2021", severity: "critical" as const, target: "api.acmecorp.com" },
+  { id: "evt-2", time: "38 min ago", event: "BOLA vulnerability identified", category: "A01:2021", severity: "critical" as const, target: "app.acmecorp.com" },
+  { id: "evt-3", time: "1 hr ago", event: "Full OWASP scan completed", category: "All", severity: "info" as const, target: "api.acmecorp.com" },
+  { id: "evt-4", time: "2 hr ago", event: "Auth failure patterns detected", category: "A07:2021", severity: "critical" as const, target: "app.acmecorp.com" },
+  { id: "evt-5", time: "4 hr ago", event: "CSP header missing", category: "A05:2021", severity: "high" as const, target: "www.acmecorp.com" },
+  { id: "evt-6", time: "6 hr ago", event: "Crypto failure: HTTP endpoint", category: "A02:2021", severity: "high" as const, target: "legacy.acmecorp.com" },
+]
+
+/* ── Stats Summary ── */
+export const OWASP_STATS: OWASPStats = {
+  totalFindings: 57,
+  criticalCount: 9,
+  highCount: 21,
+  mediumCount: 18,
+  lowCount: 7,
+  infoCount: 2,
+  securityScore: 62,
+  riskScore: 54,
+  overallCoverage: 83,
+  resolvedCount: 14,
+}
+
+/* ── AI Insights ── */
+export const OWASP_AI_INSIGHTS = [
+  {
+    id: "ai-1",
+    category: "A03:2021",
+    insight: "3 active SQL injection vectors detected. Unparameterized queries in authentication and search endpoints represent the highest immediate risk surface.",
+    recommendation: "Immediately patch POST /api/v2/users/search with prepared statements. Validate all SQL-touching endpoints with a parameterized query audit.",
+    severity: "critical" as const,
+    confidence: 97,
+  },
+  {
+    id: "ai-2",
+    category: "A01:2021",
+    insight: "Object-level authorization checks are absent on 12 API routes. BOLA pattern consistent with IDOR exploitation.",
+    recommendation: "Implement row-level ownership validation before serving resources. Enforce via middleware, not just UI-level controls.",
+    severity: "critical" as const,
+    confidence: 94,
+  },
+  {
+    id: "ai-3",
+    category: "A10:2021",
+    insight: "SSRF category shows 0% scan coverage. No SSRF-specific payloads have been tested against your infrastructure.",
+    recommendation: "Schedule a dedicated SSRF-focused scan targeting cloud metadata endpoints and internal network segments.",
+    severity: "high" as const,
+    confidence: 89,
+  },
+]

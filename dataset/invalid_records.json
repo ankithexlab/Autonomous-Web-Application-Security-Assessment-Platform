@@ -1,0 +1,10 @@
+[
+  {
+    "id": "csrf-039",
+    "reason": "Missing required field: payload (description text contained merged JavaScript call without explicit payload field)",
+    "context": "CSRF test suite",
+    "type": "CSRF",
+    "severity": "high",
+    "excluded_from_import": true
+  }
+]
